@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Political Preparedness</string>
+    <string name="title_upcoming">Upcoming Events</string>
+    <string name="title_saved">Saved Events</string>
+    <string name="title_rep_search">Rep Search</string>
+    <string name="title_rep_search_result">Search Result</string>
+    <string name="hello_blank_fragment">Hello Blank Fragment</string>
+</resources>

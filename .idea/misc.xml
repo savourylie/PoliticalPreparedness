@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/ic_ballot_white_24dp.xml" value="0.2537037037037037" />
+        <entry key="app/src/main/res/drawable/ic_folder_special_white_24dp.xml" value="0.2537037037037037" />
+        <entry key="app/src/main/res/drawable/ic_person_pin_circle_white_24dp.xml" value="0.2537037037037037" />
+        <entry key="app/src/main/res/drawable/ic_person_search_white_24dp.xml" value="0.2537037037037037" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.21203703703703702" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/election_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_rep_search.xml" value="0.19895833333333332" />
+        <entry key="app/src/main/res/layout/fragment_rep_search_result.xml" value="0.12222222222222222" />
+        <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.12222222222222222" />
+        <entry key="app/src/main/res/layout/fragment_upcoming.xml" value="0.19895833333333332" />
+        <entry key="app/src/main/res/menu/navigation.xml" value="0.21203703703703702" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

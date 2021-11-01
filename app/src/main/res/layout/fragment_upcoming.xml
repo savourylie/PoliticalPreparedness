@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.onionmonster.politicalpreparedness.upcoming.UpcomingViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/upcoming_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".upcoming.UpcomingFragment"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{viewModel.response}"
+            android:textColor="@color/colorPrimary"/>
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recycler_upcoming_election"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">-->
+<!--        </androidx.recyclerview.widget.RecyclerView>-->
+    </LinearLayout>
+
+</layout>
