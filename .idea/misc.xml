@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.1890625" />
         <entry key="app/src/main/res/drawable/ic_ballot_white_24dp.xml" value="0.2537037037037037" />
         <entry key="app/src/main/res/drawable/ic_folder_special_white_24dp.xml" value="0.2537037037037037" />
         <entry key="app/src/main/res/drawable/ic_person_pin_circle_white_24dp.xml" value="0.2537037037037037" />
@@ -13,7 +14,8 @@
         <entry key="app/src/main/res/layout/fragment_rep_search.xml" value="0.19895833333333332" />
         <entry key="app/src/main/res/layout/fragment_rep_search_result.xml" value="0.12222222222222222" />
         <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.12222222222222222" />
-        <entry key="app/src/main/res/layout/fragment_upcoming.xml" value="0.19895833333333332" />
+        <entry key="app/src/main/res/layout/fragment_upcoming.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_upcoming_detail.xml" value="0.23624852577260128" />
         <entry key="app/src/main/res/menu/navigation.xml" value="0.21203703703703702" />
       </map>
     </option>
@@ -23,5 +25,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.335" />
+      </ProjectState>
+    </option>
   </component>
 </project>

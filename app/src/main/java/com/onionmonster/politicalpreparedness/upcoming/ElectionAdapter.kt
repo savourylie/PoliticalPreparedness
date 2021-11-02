@@ -5,32 +5,33 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.onionmonster.politicalpreparedness.data.Election
 import com.onionmonster.politicalpreparedness.databinding.FragmentUpcomingBinding
-import com.onionmonster.politicalpreparedness.upcoming.data.dto.PoliticalEvent
+
 
 class ElectionAdapter(
-    private val electionSelectedListener: OnElectionSelectedListener,
+    private val electionListener: OnElectionSelectedListener,
     private val binding: FragmentUpcomingBinding
-): ListAdapter<PoliticalEvent, ElectionViewHolder>(EventDiffCallback()) {
+): ListAdapter<Election, ElectionViewHolder>(EventDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElectionViewHolder {
-        return ElectionViewHolder.from(parent, binding, electionSelectedListener)
+        return ElectionViewHolder.from(parent, electionListener, binding)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ElectionViewHolder, position: Int) {
         val election = getItem(position)
 
-        holder.bind(election, position)
+        holder.bind(election)
     }
 }
 
-class EventDiffCallback: DiffUtil.ItemCallback<PoliticalEvent>() {
-    override fun areItemsTheSame(oldItem: PoliticalEvent, newItem: PoliticalEvent): Boolean {
+class EventDiffCallback: DiffUtil.ItemCallback<Election>() {
+    override fun areItemsTheSame(oldItem: Election, newItem: Election): Boolean {
         return oldItem.title == newItem.title
     }
 
-    override fun areContentsTheSame(oldItem: PoliticalEvent, newItem: PoliticalEvent): Boolean {
+    override fun areContentsTheSame(oldItem: Election, newItem: Election): Boolean {
         return oldItem == newItem
     }
 }

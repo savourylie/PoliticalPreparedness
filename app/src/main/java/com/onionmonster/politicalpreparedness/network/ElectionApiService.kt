@@ -1,15 +1,14 @@
-package com.onionmonster.politicalpreparedness.upcoming.network
+package com.onionmonster.politicalpreparedness.network
 
+import android.util.Log
 import com.onionmonster.politicalpreparedness.Constants
-import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+val TAG = "Dev/ElectionApiService"
 
 private val moshi = Moshi.Builder()
     .add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
@@ -32,12 +31,17 @@ object ElectionsApi {
     }
 }
 
-//interface AsteroidApiService {
-//    @GET("neo/rest/v1/feed")
-//    suspend fun getAsteroidProperties(@Query("start_date") startDate: String = START_DATE,
-//                                      @Query("start_date") endDate: String = END_DATE,
-//                                      @Query("api_key") apiKey: String = Constants.API_KEY): String
-//
-//    @GET("planetary/apod")
-//    suspend fun getImageOfTheDay(@Query("api_key") apiKey: String = Constants.API_KEY): String
-//}
+suspend fun getElectionTitles():
+        ElectionQueryProperty? {
+    return try {
+        var electionQueryProperty = ElectionsApi.retrofitService.getProperties()
+
+        Log.d(TAG, "API response: " + electionQueryProperty.elections.toString())
+
+        electionQueryProperty
+
+    } catch (e: Exception) {
+        Log.d(TAG, "Failure: ${e.message}")
+        null
+    }
+}

@@ -6,20 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.onionmonster.politicalpreparedness.R
+import com.onionmonster.politicalpreparedness.data.Election
 import com.onionmonster.politicalpreparedness.databinding.FragmentUpcomingBinding
-import com.onionmonster.politicalpreparedness.upcoming.data.dto.PoliticalEvent
+import java.io.File
 
 
-class UpcomingFragment : Fragment() {
+class UpcomingFragment : Fragment(), OnElectionSelectedListener, OnSaveIconSelectedListener {
 
     val TAG = "Dev/" + javaClass.simpleName
 
     lateinit var binding: FragmentUpcomingBinding
-    private lateinit var eventList: List<PoliticalEvent>
-    private lateinit var recyclerView: RecyclerView
     private lateinit var electionAdapter: ElectionAdapter
 
     private val viewModel: UpcomingViewModel by lazy {
@@ -39,6 +38,36 @@ class UpcomingFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
+        electionAdapter = ElectionAdapter(this, binding)
+
+        val recyclerView = binding.recyclerUpcomingElection
+        recyclerView.apply {
+            setHasFixedSize(true)
+            adapter = electionAdapter
+        }
+
+        viewModel.electionList.observe(viewLifecycleOwner, Observer<List<Election>> { elections ->
+            elections?.apply {
+                electionAdapter.submitList(elections)
+            }
+        })
+
         return binding.root
+    }
+
+    override fun onElectionClicked() {
+        replaceFragment(UpcomingDetailFragment())
+    }
+
+    override fun onSaveIconClicked(election: Election) {
+
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = activity?.supportFragmentManager
+        val transaction = fragmentManager?.beginTransaction()
+        transaction?.replace(R.id.recycler_upcoming_election, fragment)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
     }
 }

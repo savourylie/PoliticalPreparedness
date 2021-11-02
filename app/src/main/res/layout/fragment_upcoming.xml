@@ -17,19 +17,13 @@
         tools:context=".upcoming.UpcomingFragment"
         android:orientation="vertical">
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_upcoming_election"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{viewModel.response}"
-            android:textColor="@color/colorPrimary"/>
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycler_upcoming_election"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">-->
-<!--        </androidx.recyclerview.widget.RecyclerView>-->
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
 </layout>

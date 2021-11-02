@@ -1,7 +1,12 @@
 package com.onionmonster.politicalpreparedness.upcoming
 
-import com.onionmonster.politicalpreparedness.upcoming.data.dto.PoliticalEvent
+import com.onionmonster.politicalpreparedness.data.Election
+
 
 interface OnElectionSelectedListener {
-    fun onElectionClicked(election: PoliticalEvent, holder: ElectionViewHolder)
+    fun onElectionClicked()
+}
+
+interface OnSaveIconSelectedListener {
+    fun onSaveIconClicked(election: Election)
 }

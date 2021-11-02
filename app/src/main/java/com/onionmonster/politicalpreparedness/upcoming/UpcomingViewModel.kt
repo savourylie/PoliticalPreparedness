@@ -1,23 +1,27 @@
 package com.onionmonster.politicalpreparedness.upcoming
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.onionmonster.politicalpreparedness.upcoming.network.ElectionProperty
-import com.onionmonster.politicalpreparedness.upcoming.network.ElectionQueryProperty
-import com.onionmonster.politicalpreparedness.upcoming.network.ElectionsApi
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.*
+import androidx.recyclerview.widget.GridLayoutManager
+import com.onionmonster.politicalpreparedness.data.Election
+import com.onionmonster.politicalpreparedness.database.getDatabase
+import com.onionmonster.politicalpreparedness.databinding.FragmentUpcomingBinding
+import com.onionmonster.politicalpreparedness.network.ElectionProperty
+import com.onionmonster.politicalpreparedness.network.ElectionsApi
+import com.onionmonster.politicalpreparedness.repository.ElectionRepository
+import kotlinx.coroutines.launch
+import java.io.File
 
 
 enum class ElectionApiStatus {LOADING, ERROR, DONE}
 
 
-class UpcomingViewModel: ViewModel() {
+class UpcomingViewModel(application: Application) : AndroidViewModel(application) {
     val TAG = "Dev/" + javaClass.simpleName
+
+    private val database = getDatabase(application)
+    private val electionRepository = ElectionRepository(database)
 
     private val _status = MutableLiveData<ElectionApiStatus>()
     val status: LiveData<ElectionApiStatus>
@@ -27,33 +31,36 @@ class UpcomingViewModel: ViewModel() {
     val response: LiveData<String>
         get() = _response
 
+
+    private val _properties = MutableLiveData<List<ElectionProperty>>()
+    val properties: LiveData<List<ElectionProperty>>
+        get() = _properties
+
     init {
-        Log.d(TAG, "Initialized.")
-        getElectionTitles()
-    }
-
-    private fun getElectionTitles() {
         viewModelScope.launch {
-
+            electionRepository.refreshElections()
         }
-
     }
 
+    val electionList = electionRepository.elections
 
-//        ElectionsApi.retrofitService.getProperties().enqueue(object: Callback<ElectionQueryProperty> {
-//            override fun onResponse(call: Call<ElectionQueryProperty>, response: Response<ElectionQueryProperty>) {
-////                _response.value = response.body()
-//                _response.value = "Success: ${response.body()?.elections?.size} election properties retrieved."
-//                Log.d(TAG, "onResponse")
-////                Log.d(TAG, "Response code: " + response.code().toString())
-//                Log.d(TAG, _response.value.toString())
-//            }
+
+//    private fun getElectionTitles() {
+//        viewModelScope.launch {
+//            try {
+//                var listResult = ElectionsApi.retrofitService.getProperties().elections
 //
-//            override fun onFailure(call: Call<ElectionQueryProperty>, t: Throwable) {
-//                _response.value = "Failure: " + t.message
-//                Log.d(TAG, "onFailure")
-//                Log.d(TAG, _response.value.toString())
+//                if (listResult.isNotEmpty()) {
+//                    _properties.value = listResult
+//                }
+//
+//                _response.value = "Success: ${listResult.size} Mars properties retrieved"
+//            } catch (e: Exception) {
+//                _response.value = "Failure: ${e.message}"
 //            }
-//        })
+//        }
+//    }
+
+
 
 }

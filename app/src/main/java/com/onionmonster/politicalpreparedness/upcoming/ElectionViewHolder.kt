@@ -9,27 +9,26 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.onionmonster.politicalpreparedness.R
+import com.onionmonster.politicalpreparedness.data.Election
 import com.onionmonster.politicalpreparedness.databinding.FragmentUpcomingBinding
-import com.onionmonster.politicalpreparedness.upcoming.data.dto.PoliticalEvent
 
 
 class ElectionViewHolder private constructor (itemView: View,
-                                          val binding: FragmentUpcomingBinding,
-                                          private val electionListener: OnElectionSelectedListener,
-                                          ): RecyclerView.ViewHolder(itemView) {
+                                              val electionListener: OnElectionSelectedListener,
+                                              val binding: FragmentUpcomingBinding,
+                                             ): RecyclerView.ViewHolder(itemView) {
 
     val container: CardView = itemView.findViewById(R.id.election_item)
     private val eventTitle: TextView = itemView.findViewById(R.id.election_title)
     private val eventDateTime: TextView = itemView.findViewById(R.id.election_datetime)
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun bind(event: PoliticalEvent, position: Int) {
-
+    fun bind(event: Election) {
         eventTitle.text = event.title
         eventDateTime.text = event.datetime
 
         container.setOnClickListener {
-            electionListener.onElectionClicked(event, this)
+            electionListener.onElectionClicked()
         }
 
         binding.executePendingBindings()
@@ -37,12 +36,13 @@ class ElectionViewHolder private constructor (itemView: View,
 
     companion object {
         fun from(parent: ViewGroup,
+                 electionListener: OnElectionSelectedListener,
                  binding: FragmentUpcomingBinding,
-                 electionListener: OnElectionSelectedListener): ElectionViewHolder {
+                 ): ElectionViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val view = layoutInflater.inflate(R.layout.election_item, parent, false) as CardView
 
-            return ElectionViewHolder(view, binding, electionListener)
+            return ElectionViewHolder(view, electionListener, binding)
         }
     }
 }
